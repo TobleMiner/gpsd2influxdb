@@ -33,7 +33,7 @@ gpspipe -w | while read -r line; do
 	for param in $params; do
 		val="$(jq_get_param ."$param" <<< $line)"
 		if [ -n "$val" ]; then
-			post_body="$post_body"$'\n'"gpsd,host=$gpsd_hostname,device=$gpsd_device,tpv=alt value=$val"
+			post_body="$post_body"$'\n'"gpsd,host=$gpsd_hostname,device=$gpsd_device,tpv=$param value=$val"
 		fi
 	done
 
